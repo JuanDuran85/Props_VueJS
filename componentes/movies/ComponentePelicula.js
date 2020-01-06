@@ -4,6 +4,7 @@ let ComponentePelicula = {
             <img :src="cover"/>
             <h2 v-text="title"></h2>
             <p v-text="synopsis"></p>
+            <button @click="activarLike" v-text="like ? 'Favorita' : 'Agregar a Favorita' "></button>
             <hr>
         </div>
     `,
@@ -23,8 +24,23 @@ let ComponentePelicula = {
         synopsis: {
             type: String,
             default: "No posee información"
+        },
+        mensaje: {
+            type: String
+        },
+        like: {
+            type: Boolean,
+            required: true,
+            default(){
+                return false
+            }
         }
-    }
+    },
+    methods: {
+        activarLike(){
+            this.like = !this.like  
+        }
+    },
 }
 
 /*
