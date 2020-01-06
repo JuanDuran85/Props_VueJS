@@ -4,7 +4,7 @@ let ComponentePelicula = {
             <img :src="cover"/>
             <h2 v-text="title"></h2>
             <p v-text="synopsis"></p>
-            <button @click="activarLike" v-text="like ? 'Favorita' : 'Agregar a Favorita' "></button>
+            <button @click="$emit('update:like', !like)" v-text="like ? 'Favorita' : 'Agregar a Favorita' "></button>
             <hr>
         </div>
     `,
@@ -62,3 +62,6 @@ esta forma es la mas rapida de llevar los valores a los props
 // el uso de $emit permite emitir eventos desde hijo al padre.
 // emit es un metodo.
 // $emit(primer valor nombre del evento que se va a emitir, segunda propiedad es el valor o una data) 
+/* 
+al usar el sync, se debe utilizar el @click="$emit('update:nombre de la data', valor)"
+*/

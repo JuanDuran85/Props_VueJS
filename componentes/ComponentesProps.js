@@ -9,8 +9,7 @@ Vue.component('componentes-props', {
                 :synopsis="item.synopsis" 
                 :cover="item.cover" 
                 :id="item.id" 
-                :like="item.like"
-                @LikeActivo="activandoLikes" 
+                :like.sync="item.like"
                 mensaje="Aplicación para Peliculas"/>
         </div>
     `,
@@ -54,6 +53,10 @@ Vue.component('componentes-props', {
 
 /* en el componenete padre se escucha el evento emitido por el componente hijo
 para ello se utiliza el @ mas el nombre del evento en el emit del hijo, y se iguala a un metodo
-para que realice lo deseado
+para que realice lo deseado. 
+
+como primer ejemplo se puede usar el  @LikeActivo="activandoLikes" para hacer el llamado a la funcion en methods y realizarel proceso. Esta es la forma mas larga.
+
+Mientras que la otra forma, la cual es trabajando con sync, es mas corta y rapida. Porque se sincroniza el props con la data entre los componentes hijo y padre
 
 */
