@@ -38,7 +38,12 @@ let ComponentePelicula = {
     },
     methods: {
         activarLike(){
-            this.like = !this.like  
+            //this.like = !this.like
+            let datos = {
+                id :this.id,
+                like : !this.like
+            };
+            this.$emit('LikeActivo', datos);
         }
     },
 }
@@ -53,3 +58,7 @@ esta forma es la mas rapida de llevar los valores a los props
     ]
 
 */
+
+// el uso de $emit permite emitir eventos desde hijo al padre.
+// emit es un metodo.
+// $emit(primer valor nombre del evento que se va a emitir, segunda propiedad es el valor o una data) 

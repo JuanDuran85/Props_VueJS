@@ -9,7 +9,8 @@ Vue.component('componentes-props', {
                 :synopsis="item.synopsis" 
                 :cover="item.cover" 
                 :id="item.id" 
-                :like="item.like" 
+                :like="item.like"
+                @LikeActivo="activandoLikes" 
                 mensaje="Aplicación para Peliculas"/>
         </div>
     `,
@@ -41,5 +42,18 @@ Vue.component('componentes-props', {
     },
     components: {
         ComponentePelicula
-    }
-})
+    },
+    methods: {
+        activandoLikes(datos){
+            let peliculaLike = this.peliculas.find(peli => peli.id == datos.id);
+            peliculaLike.like = datos.like;
+            console.log(peliculaLike.like);
+        }
+    },
+});
+
+/* en el componenete padre se escucha el evento emitido por el componente hijo
+para ello se utiliza el @ mas el nombre del evento en el emit del hijo, y se iguala a un metodo
+para que realice lo deseado
+
+*/
