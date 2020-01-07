@@ -11,10 +11,13 @@ Vue.component('componentes-props', {
                 :id="item.id" 
                 :like.sync="item.like"
                 :like2="item.like2"
+                :like3="item.like3"
                 @LikeActivo="activandoLikes"
+                @LikeActivo3="activandoLikes3"
                 mensaje="Aplicación para Peliculas"
             />
             <FavoritoPelicula v-if="showFavorito" @ocultarFav="activarOcultoFav"/>
+            <FavoritoPelicula2 :like3.sync="showFavorito2"/>
         </div>
     `,
     data() {
@@ -26,7 +29,8 @@ Vue.component('componentes-props', {
                     synopsis: 'Durante las labores de recuperación de los restos del famoso trasatlántico Titanic, una anciana norteamericana se pone en contacto con la expedición para acudir…',
                     cover: 'https://image.tmdb.org/t/p/w185_and_h278_bestv2/zraTDtulFw2wrpyuYf646k95MNq.jpg',
                     like: false,
-                    like2: false
+                    like2: false,
+                    like3: false
                 },
                 {
                     id: 2,
@@ -34,22 +38,26 @@ Vue.component('componentes-props', {
                     synopsis: 'Un remake del clásico animado de Disney de 1994 El rey león que estará dirigido por Jon Favreu. Simba (Donald Glover) es el hijo del rey de los leones, Mufasa…',
                     cover: 'https://image.tmdb.org/t/p/w185_and_h278_bestv2/3A8ca8WOBacCRujSKJ2tCVKsieQ.jpg',
                     like: false,
-                    like2: false
+                    like2: false,
+                    like3: false
                 },
                 {
                     id: 3,
                     title: 'Toy Story',
                     cover: 'https://image.tmdb.org/t/p/w185_and_h278_bestv2/uMZqKhT4YA6mqo2yczoznv7IDmv.jpg',
                     like: false,
-                    like2: false
+                    like2: false,
+                    like3: false
                 }
             ],
-            showFavorito: false
+            showFavorito: false,
+            showFavorito2: false
         }
     },
     components: {
         ComponentePelicula,
-        FavoritoPelicula
+        FavoritoPelicula,
+        FavoritoPelicula2
     },
     methods: {
         activandoLikes(datos){
@@ -65,8 +73,24 @@ Vue.component('componentes-props', {
                  this.showFavorito = false;
             },1900);*/
         },
+        activandoLikes3(datos){
+            let peliculaLike = this.peliculas.find(peli => peli.id == datos.id);
+            peliculaLike.like3 = datos.like3;
+            this.showFavorito2 = datos.like3;
+            
+            if (datos.like3) {
+                alert(`${peliculaLike.title} agregada a favortias 3`);
+            }
+            //ocultando la animacion con setTimeout
+            /* setTimeout(()=> {
+                 this.showFavorito = false;
+            },1900);*/
+        },
         activarOcultoFav(show){
             this.showFavorito = show;
+        },
+        activarOcultoFav3(show){
+            this.showFavorito2 = show;
         }
     },
 });
