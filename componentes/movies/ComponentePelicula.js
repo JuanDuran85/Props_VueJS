@@ -4,7 +4,15 @@ let ComponentePelicula = {
             <img :src="cover"/>
             <h2 v-text="title"></h2>
             <p v-text="synopsis"></p>
-            <button @click="$emit('update:like', !like)" v-text="like ? 'Favorita' : 'Agregar a Favorita' "></button>
+            <button 
+                @click="$emit('update:like', !like)" 
+                v-text="like ? 'Favorita' : 'Agregar a Favorita' ">
+            </button>
+            <br>
+            <button 
+                @click="activarLike" 
+                v-text="like2 ? 'Favorita2' : 'Agregar a Favorita2' ">
+            </button>
             <hr>
         </div>
     `,
@@ -34,6 +42,13 @@ let ComponentePelicula = {
             default(){
                 return false
             }
+        },
+        like2: {
+            type: Boolean,
+            required: true,
+            default(){
+                return false
+            }
         }
     },
     methods: {
@@ -41,7 +56,7 @@ let ComponentePelicula = {
             //this.like = !this.like
             let datos = {
                 id :this.id,
-                like : !this.like
+                like2 : !this.like2
             };
             this.$emit('LikeActivo', datos);
         }
