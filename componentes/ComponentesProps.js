@@ -14,7 +14,7 @@ Vue.component('componentes-props', {
                 @LikeActivo="activandoLikes"
                 mensaje="Aplicación para Peliculas"
             />
-            <FavoritoPelicula v-if="showFavorito"/>
+            <FavoritoPelicula v-if="showFavorito" @ocultarFav="activarOcultoFav"/>
         </div>
     `,
     data() {
@@ -56,15 +56,17 @@ Vue.component('componentes-props', {
             let peliculaLike = this.peliculas.find(peli => peli.id == datos.id);
             peliculaLike.like2 = datos.like2;
             this.showFavorito = datos.like2;
+            
             if (datos.like2) {
                 alert(`${peliculaLike.title} agregada a favortias 2`);
             }
-            console.log(peliculaLike.like2);
-            
-            setTimeout(()=> {
-                this.showFavorito = false;
-                console.log('desde settimeout');
-            },1900)
+            //ocultando la animacion con setTimeout
+            /* setTimeout(()=> {
+                 this.showFavorito = false;
+            },1900);*/
+        },
+        activarOcultoFav(show){
+            this.showFavorito = show;
         }
     },
 });
@@ -76,7 +78,6 @@ para que realice lo deseado.
 como primer ejemplo se puede usar el  @LikeActivo="activandoLikes" para hacer el llamado a la funcion en methods y realizarel proceso. Esta es la forma mas larga.
 
 Mientras que la otra forma, la cual es trabajando con sync, es mas corta y rapida. Porque se sincroniza el props con la data entre los componentes hijo y padre
-
 
 se ejecuta la arrow function para poder llevar el valor del estado actual, de lo
 contrario, la funcion crea su propio entorni y pierda el valor
