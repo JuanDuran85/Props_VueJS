@@ -17,7 +17,7 @@ Vue.component('componentes-props', {
                 mensaje="Aplicación para Peliculas"
             />
             <FavoritoPelicula v-if="showFavorito" @ocultarFav="activarOcultoFav"/>
-            <FavoritoPelicula2 :like3.sync="showFavorito2"/>
+            <FavoritoPelicula2 :mostrar.sync="showFavorito2" />
         </div>
     `,
     data() {
@@ -89,7 +89,7 @@ Vue.component('componentes-props', {
         activarOcultoFav(show){
             this.showFavorito = show;
         },
-        activarOcultoFav3(show){
+        activarOcultoFav2(show){
             this.showFavorito2 = show;
         }
     },

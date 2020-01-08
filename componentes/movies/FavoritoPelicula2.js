@@ -19,7 +19,6 @@ let FavoritoPelicula2 = {
         console.log($element2);
         //let aux = this; pra usar en caso de aplicar funcion tradicional
         $element2.addEventListener('animationend', ()=>{
-            //this.$emit('ocultarFav2',false);
             this.$emit('update: mostrar', false)
             console.log('desde el addEventListener2');
         });
